@@ -28,8 +28,8 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
-        <div className="container grid grid-cols-3 items-center h-16">
-          <div className="flex items-center justify-start">
+        <div className="container flex items-center justify-between h-16">
+          <div className="flex items-center gap-3">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-primary hover:bg-primary-soft">
@@ -54,15 +54,15 @@ const Layout = () => {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
+            <Link to="/" className="flex items-center" aria-label="Kansolele home">
+              <img
+                src={logo}
+                alt="Kansolele General Supply Enterprises"
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
           </div>
-          <Link to="/" className="flex items-center justify-center" aria-label="Kansolele home">
-            <img
-              src={logo}
-              alt="Kansolele General Supply Enterprises"
-              className="h-10 w-auto object-contain"
-            />
-          </Link>
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="text-primary hover:bg-primary-soft relative">
               <Bell className="w-6 h-6" />
               <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-destructive" />
