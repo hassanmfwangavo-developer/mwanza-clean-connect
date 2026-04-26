@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import logo from "@/assets/logo.png";
 
 const Layout = () => {
   const { user, isAdmin, signOut } = useAuth();
@@ -53,8 +54,12 @@ const Layout = () => {
                 )}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link to="/" className="text-primary font-extrabold text-xl tracking-tight font-[Plus_Jakarta_Sans]">
-              kansolele
+            <Link to="/" className="flex items-center" aria-label="Kansolele home">
+              <img
+                src={logo}
+                alt="Kansolele General Supply Enterprises"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
           </div>
           <div className="flex items-center gap-2">
