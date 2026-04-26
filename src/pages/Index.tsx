@@ -10,7 +10,7 @@ import heroImg from "@/assets/hero-cleaner.jpg";
 const heroSlides = [
   {
     image: heroImg,
-    title: "Huduma Safi kwa\nMwanza Bora",
+    title: "Huduma Safi \nKIpaumbele chetu",
     subtitle: "Tunafanya Usafi wa majumbani na maofisini kwa kiwango cha juu.",
     cta: "Book a Service",
     href: "#services",
