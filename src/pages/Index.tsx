@@ -6,6 +6,7 @@ import { SERVICE_LIST, type ServiceDef } from "@/lib/services";
 import { fadeUp, stagger } from "@/lib/motion";
 import BookingModal from "@/components/BookingModal";
 import Footer from "@/components/Footer";
+import MapSection from "@/components/MapSection";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroWindows from "@/assets/hero-windows.jpg";
 
@@ -116,43 +117,48 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">Suluhisho la kitaalamu kwa kila eneo</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="space-y-5">
             {SERVICE_LIST.map((svc) => {
               const Icon = svc.icon;
               return (
                 <motion.button
                   key={svc.key}
                   variants={fadeUp}
-                  whileHover={{ y: -4 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileTap={{ scale: 0.985 }}
                   onClick={() => openBooking(svc)}
-                  className="group text-left rounded-2xl overflow-hidden bg-card shadow-soft hover:shadow-elegant border border-border/60 hover:border-primary/40 transition-smooth"
+                  className="group relative w-full text-left rounded-3xl overflow-hidden shadow-elegant border border-border/60 hover:border-primary/40 transition-smooth bg-card"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
                     <img
                       src={svc.image}
                       alt={svc.name}
                       loading="lazy"
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute top-2 left-2 w-9 h-9 rounded-xl bg-white/90 backdrop-blur text-primary flex items-center justify-center shadow-soft">
-                      <Icon className="w-5 h-5" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/55 to-primary/15" />
+                    <div className="absolute top-4 right-4 w-12 h-12 rounded-2xl bg-white/95 backdrop-blur text-primary flex items-center justify-center shadow-soft">
+                      <Icon className="w-6 h-6" />
                     </div>
-                  </div>
-                  <div className="p-3">
-                    <h3 className="font-bold text-base leading-tight">{svc.name}</h3>
-                    <p className="text-xs text-muted-foreground leading-snug mt-0.5 line-clamp-2">
-                      {svc.tagline}
-                    </p>
+                    <div className="absolute inset-y-0 right-0 left-0 md:left-auto md:w-2/3 flex flex-col justify-center p-6 md:p-8 text-primary-foreground">
+                      <h3 className="text-2xl md:text-4xl font-extrabold leading-tight drop-shadow">
+                        {svc.name}
+                      </h3>
+                      <p className="text-sm md:text-base text-primary-foreground/90 mt-1 max-w-sm drop-shadow">
+                        {svc.tagline}
+                      </p>
+                      <span className="mt-4 inline-flex items-center gap-1 self-start text-xs md:text-sm font-bold uppercase tracking-wider bg-card text-primary px-4 py-2 rounded-full shadow-soft group-hover:bg-white transition-smooth">
+                        Book Now →
+                      </span>
+                    </div>
                   </div>
                 </motion.button>
               );
             })}
           </div>
         </motion.section>
+
+        <MapSection />
       </div>
 
       <Footer />

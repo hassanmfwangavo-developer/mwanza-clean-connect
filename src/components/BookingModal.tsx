@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { addBooking } from "@/lib/bookings";
+import { addNotification } from "@/lib/notifications";
 import { buildWhatsAppLink, type ServiceDef } from "@/lib/services";
 import { MessageCircle } from "lucide-react";
 
@@ -35,6 +36,7 @@ const BookingModal = ({ service, open, onOpenChange }: Props) => {
       date: date || undefined,
       phone: phone || undefined,
     });
+    addNotification("Ombi lako la usafi limehifadhiwa.");
     toast.success("Booking imehifadhiwa", { description: "Inakupeleka WhatsApp..." });
     const extra = [details.trim(), date && `Tarehe: ${date}`, phone && `Simu: ${phone}`]
       .filter(Boolean)
