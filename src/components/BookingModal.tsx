@@ -65,7 +65,7 @@ const BookingModal = ({ service, open, onOpenChange }: Props) => {
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
             <div className="space-y-2">
-              <Label htmlFor="details">Aina ya nyumba / ukubwa</Label>
+              <Label htmlFor="details">Mahali/Ukubwa wa eneo</Label>
               <Textarea
                 id="details"
                 value={details}
