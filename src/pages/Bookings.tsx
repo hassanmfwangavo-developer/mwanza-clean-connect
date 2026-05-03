@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle } from "lucide-react";
-import { getBookings, subscribeBookings, type Booking } from "@/lib/bookings";
+import { Calendar, MessageCircle, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import { getBookings, subscribeBookings, deleteBooking, type Booking } from "@/lib/bookings";
 import { SERVICES, buildWhatsAppLink, type ServiceKey } from "@/lib/services";
 import { fadeUp, stagger } from "@/lib/motion";
 

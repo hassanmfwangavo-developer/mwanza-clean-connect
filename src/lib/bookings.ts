@@ -42,6 +42,12 @@ export function clearBookings() {
   window.dispatchEvent(new CustomEvent(EVENT));
 }
 
+export function deleteBooking(id: string) {
+  const all = getBookings().filter((b) => b.id !== id);
+  localStorage.setItem(KEY, JSON.stringify(all));
+  window.dispatchEvent(new CustomEvent(EVENT));
+}
+
 export function subscribeBookings(cb: () => void): () => void {
   const handler = () => cb();
   window.addEventListener(EVENT, handler);
