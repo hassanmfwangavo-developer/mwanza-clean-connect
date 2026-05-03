@@ -26,7 +26,7 @@ const Profile = () => {
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-bold">Kansolele Cleaning</h3>
+              <h3 className="font-bold">Kansolele Professional Cleaners</h3>
               <p className="text-xs text-muted-foreground">Toleo 1.0</p>
             </div>
           </div>
