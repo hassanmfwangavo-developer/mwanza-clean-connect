@@ -197,6 +197,8 @@ const Layout = () => {
           </NavLink>
         </div>
       </nav>
+
+      <VifaaGallery open={vifaaOpen} onOpenChange={setVifaaOpen} />
     </div>
   );
 };
