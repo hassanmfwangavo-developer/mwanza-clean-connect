@@ -88,29 +88,16 @@ const Layout = () => {
                 </SheetTitle>
               </SheetHeader>
               <nav className="p-3 space-y-1">
-                {drawerLinks.map((l) =>
-                  l.external ? (
-                    <a
-                      key={l.label}
-                      href={l.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setDrawerOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
-                    >
-                      {l.label}
-                    </a>
-                  ) : (
-                    <NavLink
-                      key={l.label}
-                      to={l.to}
-                      onClick={() => setDrawerOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
-                    >
-                      {l.label}
-                    </NavLink>
-                  )
-                )}
+                {drawerLinks.map((l) => (
+                  <button
+                    key={l.label}
+                    type="button"
+                    onClick={l.onClick}
+                    className="w-full text-left block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
+                  >
+                    {l.label}
+                  </button>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>
