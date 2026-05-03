@@ -7,6 +7,8 @@ import { fadeUp, stagger } from "@/lib/motion";
 import BookingModal from "@/components/BookingModal";
 import Footer from "@/components/Footer";
 import MapSection from "@/components/MapSection";
+import Testimonials from "@/components/Testimonials";
+import FaqSection from "@/components/FaqSection";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroWindows from "@/assets/hero-windows.jpg";
 
@@ -162,6 +164,8 @@ const Index = () => {
           </div>
         </motion.section>
 
+        <Testimonials />
+        <FaqSection />
         <MapSection />
       </div>
 
