@@ -70,7 +70,7 @@ const BookingModal = ({ service, open, onOpenChange }: Props) => {
                 id="details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
-                placeholder="Mfano: Nyumba ya vyumba 3, sebule kubwa, na bafu mbili"
+                placeholder="Mfano: Ofisi na  eneo la sheri lenye ukubwa wa meter 16-16 "
                 className="bg-white/60 border-white/50 backdrop-blur min-h-[90px]"
                 required
               />
