@@ -26,6 +26,10 @@ const Index = () => {
   }, []);
 
   const openBooking = (svc: ServiceDef) => {
+    if (svc.key === "vifaa") {
+      window.dispatchEvent(new CustomEvent("kansolele:open-vifaa"));
+      return;
+    }
     setSelected(svc);
     setOpen(true);
   };

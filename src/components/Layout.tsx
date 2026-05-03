@@ -5,9 +5,11 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 import { WHATSAPP_NUMBER } from "@/lib/services";
+import VifaaGallery from "@/components/VifaaGallery";
 import {
   getNotifications,
   subscribeNotifications,
@@ -16,20 +18,51 @@ import {
   type AppNotification,
 } from "@/lib/notifications";
 
-const drawerLinks = [
-  { label: "Home", to: "/" },
-  { label: "Huduma Zetu", to: "/#services" },
-  { label: "Vifaa & Teknolojia", to: "/#services" },
-  { label: "Msaada", to: `https://wa.me/${WHATSAPP_NUMBER}`, external: true },
-];
-
 const Layout = () => {
   const [notifs, setNotifs] = useState<AppNotification[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [vifaaOpen, setVifaaOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goHome = async () => {
+    setDrawerOpen(false);
+    if (location.pathname !== "/") navigate("/");
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
+  };
+  const goServices = async () => {
+    setDrawerOpen(false);
+    if (location.pathname !== "/") navigate("/");
+    setTimeout(
+      () => document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      80,
+    );
+  };
+  const openVifaa = () => {
+    setDrawerOpen(false);
+    setVifaaOpen(true);
+  };
+  const openMsaada = () => {
+    setDrawerOpen(false);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}`, "_blank", "noopener,noreferrer");
+  };
+
+  const drawerLinks: { label: string; onClick: () => void }[] = [
+    { label: "Home", onClick: goHome },
+    { label: "Huduma Zetu", onClick: goServices },
+    { label: "Vifaa & Teknolojia", onClick: openVifaa },
+    { label: "Msaada", onClick: openMsaada },
+  ];
 
   useEffect(() => {
     setNotifs(getNotifications());
-    return subscribeNotifications(() => setNotifs(getNotifications()));
+    const unsub = subscribeNotifications(() => setNotifs(getNotifications()));
+    const handler = () => setVifaaOpen(true);
+    window.addEventListener("kansolele:open-vifaa", handler);
+    return () => {
+      unsub();
+      window.removeEventListener("kansolele:open-vifaa", handler);
+    };
   }, []);
 
   const unreadCount = notifs.filter((n) => !n.read).length;
@@ -61,29 +94,16 @@ const Layout = () => {
                 </SheetTitle>
               </SheetHeader>
               <nav className="p-3 space-y-1">
-                {drawerLinks.map((l) =>
-                  l.external ? (
-                    <a
-                      key={l.label}
-                      href={l.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setDrawerOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
-                    >
-                      {l.label}
-                    </a>
-                  ) : (
-                    <NavLink
-                      key={l.label}
-                      to={l.to}
-                      onClick={() => setDrawerOpen(false)}
-                      className="block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
-                    >
-                      {l.label}
-                    </NavLink>
-                  )
-                )}
+                {drawerLinks.map((l) => (
+                  <button
+                    key={l.label}
+                    type="button"
+                    onClick={l.onClick}
+                    className="w-full text-left block px-4 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary-soft hover:text-primary transition-smooth"
+                  >
+                    {l.label}
+                  </button>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>
@@ -183,6 +203,8 @@ const Layout = () => {
           </NavLink>
         </div>
       </nav>
+
+      <VifaaGallery open={vifaaOpen} onOpenChange={setVifaaOpen} />
     </div>
   );
 };
