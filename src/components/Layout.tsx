@@ -56,7 +56,13 @@ const Layout = () => {
 
   useEffect(() => {
     setNotifs(getNotifications());
-    return subscribeNotifications(() => setNotifs(getNotifications()));
+    const unsub = subscribeNotifications(() => setNotifs(getNotifications()));
+    const handler = () => setVifaaOpen(true);
+    window.addEventListener("kansolele:open-vifaa", handler);
+    return () => {
+      unsub();
+      window.removeEventListener("kansolele:open-vifaa", handler);
+    };
   }, []);
 
   const unreadCount = notifs.filter((n) => !n.read).length;
