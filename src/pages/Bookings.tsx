@@ -65,13 +65,26 @@ const Bookings = () => {
                           {b.date && <>📅 {b.date}</>} {b.phone && <>· 📞 {b.phone}</>}
                         </p>
                       )}
-                      <a
-                        href={buildWhatsAppLink(b.serviceName, b.details)}
-                        target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold mt-2 hover:underline"
-                      >
-                        <MessageCircle className="w-4 h-4" /> Endelea WhatsApp
-                      </a>
+                      <div className="flex items-center justify-between gap-2 mt-2">
+                        <a
+                          href={buildWhatsAppLink(b.serviceName, b.details)}
+                          target="_blank" rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold hover:underline"
+                        >
+                          <MessageCircle className="w-4 h-4" /> Endelea WhatsApp
+                        </a>
+                        <button
+                          type="button"
+                          aria-label="Futa booking"
+                          onClick={() => {
+                            deleteBooking(b.id);
+                            toast.success("Booking imefutwa");
+                          }}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-destructive hover:bg-destructive/10 px-2 py-1.5 rounded-lg transition-smooth active:scale-95"
+                        >
+                          <Trash2 className="w-4 h-4" /> Futa
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </Card>
