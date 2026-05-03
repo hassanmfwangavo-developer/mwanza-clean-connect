@@ -65,12 +65,12 @@ const BookingModal = ({ service, open, onOpenChange }: Props) => {
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-4">
             <div className="space-y-2">
-              <Label htmlFor="details">Mahali/Aina ya Chumba</Label>
+              <Label htmlFor="details">{service?.modalTitle ?? "Maelezo"}</Label>
               <Textarea
                 id="details"
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
-                placeholder="Mfano: Ofisi na  eneo la sheri lenye ukubwa wa meter 16-16 "
+                placeholder={service?.modalPlaceholder ?? ""}
                 className="bg-white/60 border-white/50 backdrop-blur min-h-[90px]"
                 required
               />
