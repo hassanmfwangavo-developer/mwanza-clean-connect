@@ -97,7 +97,7 @@ export const SERVICES: Record<ServiceKey, ServiceDef> = {
 
 export const SERVICE_LIST = Object.values(SERVICES);
 
-export const WHATSAPP_NUMBER = "255674044676";
+export const WHATSAPP_NUMBER = "255757261966";
 
 export function buildWhatsAppLink(serviceName: string, details?: string) {
   const text = `Habari, nahitaji huduma ya ${serviceName}.${details ? " " + details : ""}`;
