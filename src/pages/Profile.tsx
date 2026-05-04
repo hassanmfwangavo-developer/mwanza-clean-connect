@@ -50,7 +50,7 @@ const Profile = () => {
             href={`tel:+${WHATSAPP_NUMBER}`}
             className="flex items-center gap-3 p-3 rounded-xl bg-muted text-foreground font-semibold hover:bg-muted/70 transition-smooth active:scale-[0.98]"
           >
-            <Phone className="w-5 h-5" /> +255 674 044 676
+            <Phone className="w-5 h-5" /> +255 757 261 966
           </a>
         </Card>
       </motion.div>
