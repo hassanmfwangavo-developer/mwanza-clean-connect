@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
 import { Star, BadgeCheck } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 import { fadeUp } from "@/lib/motion";
 
 const TESTIMONIALS = [
@@ -21,56 +22,96 @@ const TESTIMONIALS = [
     name: "Sarah",
     location: "Nyegezi",
   },
+  {
+    quote:
+      "Timu ya kitaalamu sana. Walifanya kazi kwa wakati na waliacha mahali pakiwa pasafi kabisa.",
+    name: "Hamisi",
+    location: "Ilemela",
+  },
+  {
+    quote:
+      "Bei ni rafiki na huduma ni ya hali ya juu. Nawapendekeza kwa kila mtu Mwanza.",
+    name: "Asha",
+    location: "Mkuyuni",
+  },
 ];
 
-const Testimonials = () => (
-  <motion.section
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true, amount: 0.2 }}
-    variants={fadeUp}
-    className="space-y-4"
-  >
-    <div>
-      <h2 className="text-2xl md:text-3xl font-bold leading-tight">Wateja Wanasema</h2>
-      <p className="text-sm text-muted-foreground">Maoni halisi kutoka kwa wateja wetu</p>
-    </div>
+const Testimonials = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState(false);
 
-    <div
-      className="-mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3"
-      style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+  // Gentle auto-scroll using requestAnimationFrame
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let rafId: number;
+    const tick = () => {
+      if (!paused && el) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 0) {
+          if (el.scrollLeft >= max - 1) {
+            el.scrollTo({ left: 0, behavior: "auto" });
+          } else {
+            el.scrollLeft += 0.4;
+          }
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [paused]);
+
+  return (
+    <motion.section
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={fadeUp}
+      className="space-y-4"
     >
-      <style>{`.no-scrollbar::-webkit-scrollbar{display:none}`}</style>
-      {TESTIMONIALS.map((t, i) => (
-        <motion.article
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: i * 0.08, duration: 0.45 }}
-          className="no-scrollbar snap-center shrink-0 w-[82%] sm:w-[58%] md:w-[42%] rounded-3xl p-5 border border-white/40 bg-white/70 backdrop-blur-xl shadow-elegant"
-        >
-          <div className="flex items-center gap-1 mb-3">
-            {Array.from({ length: 5 }).map((_, k) => (
-              <Star key={k} className="w-4 h-4 fill-warning text-warning" />
-            ))}
-          </div>
-          <p className="italic text-sm md:text-base text-foreground/90 leading-relaxed">
-            "{t.quote}"
-          </p>
-          <div className="mt-4 flex items-center justify-between">
-            <div>
-              <p className="text-sm font-semibold">{t.name}</p>
-              <p className="text-xs text-muted-foreground">{t.location}</p>
+      <div>
+        <h2 className="text-2xl md:text-3xl font-bold leading-tight">Wateja Wanasema</h2>
+        <p className="text-sm text-muted-foreground">Maoni halisi kutoka kwa wateja wetu</p>
+      </div>
+
+      <style>{`.testimonial-scroll::-webkit-scrollbar{display:none}`}</style>
+      <div
+        ref={scrollRef}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setTimeout(() => setPaused(false), 1500)}
+        className="testimonial-scroll -mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 scroll-smooth"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {TESTIMONIALS.map((t, i) => (
+          <article
+            key={i}
+            className="snap-start shrink-0 w-[85vw] max-w-xs sm:w-[60%] md:w-[42%] rounded-3xl p-5 border border-white/40 bg-white/70 backdrop-blur-xl shadow-elegant"
+          >
+            <div className="flex items-center gap-1 mb-3">
+              {Array.from({ length: 5 }).map((_, k) => (
+                <Star key={k} className="w-4 h-4 fill-warning text-warning" />
+              ))}
             </div>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide bg-success/10 text-success px-2 py-1 rounded-full">
-              <BadgeCheck className="w-3 h-3" /> Verified
-            </span>
-          </div>
-        </motion.article>
-      ))}
-    </div>
-  </motion.section>
-);
+            <p className="italic text-sm md:text-base text-foreground/90 leading-relaxed">
+              "{t.quote}"
+            </p>
+            <div className="mt-4 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.location}</p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide bg-success/10 text-success px-2 py-1 rounded-full">
+                <BadgeCheck className="w-3 h-3" /> Verified
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </motion.section>
+  );
+};
 
 export default Testimonials;
