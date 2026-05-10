@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { getBookings, subscribeBookings, deleteBooking, type Booking } from "@/lib/bookings";
 import { SERVICES, buildWhatsAppLink, type ServiceKey } from "@/lib/services";
 import { fadeUp, stagger } from "@/lib/motion";
+import Seo from "@/components/Seo";
 
 const formatRel = (ts: number) => {
   const diff = (Date.now() - ts) / 1000;
@@ -28,6 +29,11 @@ const Bookings = () => {
 
   return (
     <div className="container max-w-xl py-6">
+      <Seo
+        title="My Bookings — Kansolele Cleaners Mwanza"
+        description="Tazama na simamia historia ya bookings zako za usafi na Kansolele Professional Cleaners. Endelea na huduma kupitia WhatsApp kwa urahisi."
+        path="/bookings"
+      />
       <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-5">
         <h1 className="text-2xl font-extrabold">My Bookings</h1>
         <p className="text-sm text-muted-foreground">Bookings zako zote zinahifadhiwa kwenye kifaa chako</p>
