@@ -10,10 +10,16 @@ import { clearBookings } from "@/lib/bookings";
 import { toast } from "sonner";
 import { WHATSAPP_NUMBER } from "@/lib/services";
 import { fadeUp } from "@/lib/motion";
+import Seo from "@/components/Seo";
 
 const Profile = () => {
   return (
     <div className="container max-w-xl py-6 space-y-5">
+      <Seo
+        title="Profile & Mawasiliano — Kansolele Cleaners"
+        description="Mipangilio ya akaunti yako, namba ya WhatsApp na simu ya Kansolele Professional Cleaners Mwanza, na kufuta historia ya bookings."
+        path="/profile"
+      />
       <motion.div initial="hidden" animate="show" variants={fadeUp}>
         <h1 className="text-2xl font-extrabold mb-1">Profile</h1>
         <p className="text-sm text-muted-foreground">Mipangilio ya app yako</p>

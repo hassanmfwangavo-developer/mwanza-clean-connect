@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import MapSection from "@/components/MapSection";
 import Testimonials from "@/components/Testimonials";
 import FaqSection from "@/components/FaqSection";
+import Seo from "@/components/Seo";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroWindows from "@/assets/hero-windows.jpg";
 
@@ -40,8 +41,25 @@ const Index = () => {
     document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Kansolele Professional Cleaners",
+    description:
+      "Huduma ya usafi wa majumba, ofisi, madirisha, bustani na shule jijini Mwanza, Tanzania.",
+    areaServed: "Mwanza, Tanzania",
+    telephone: "+255757261966",
+    url: typeof window !== "undefined" ? window.location.origin : undefined,
+  };
+
   return (
     <>
+      <Seo
+        title="Kansolele Cleaners Mwanza — Huduma Safi za Kitaalamu"
+        description="Book usafi wa nyumba, ofisi, madirisha, bustani na shule jijini Mwanza. Timu ya kitaalamu, bei nzuri, huduma ya haraka kupitia WhatsApp."
+        path="/"
+        jsonLd={jsonLd}
+      />
       <div className="container max-w-xl md:max-w-3xl py-5 space-y-10">
         {/* Hero */}
         <motion.section initial="hidden" animate="show" variants={fadeUp}>
