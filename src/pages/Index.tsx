@@ -10,12 +10,13 @@ import MapSection from "@/components/MapSection";
 import Testimonials from "@/components/Testimonials";
 import FaqSection from "@/components/FaqSection";
 import Seo from "@/components/Seo";
+import ServicesDetail from "@/components/ServicesDetail";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroWindows from "@/assets/hero-windows.jpg";
 
 const heroSlides = [
-  { image: heroTeam, alt: "Kansolele cleaning team" },
-  { image: heroWindows, alt: "Professional window cleaning" },
+  { image: heroTeam, alt: "Kansolele Professional Cleaners team performing deep cleaning at a Mwanza office" },
+  { image: heroWindows, alt: "Kansolele cleaner washing high-rise office windows in Mwanza, Tanzania" },
 ];
 
 const Index = () => {
@@ -43,26 +44,32 @@ const Index = () => {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "CleaningService",
     name: "Kansolele Professional Cleaners",
-    description:
-      "Huduma ya usafi wa majumba, ofisi, madirisha, bustani na shule jijini Mwanza, Tanzania. Ofisi yetu ipo Mkolani, Mwanza.",
-    areaServed: "Mwanza, Tanzania",
+    image:
+      typeof window !== "undefined"
+        ? `${window.location.origin}/favicon.png`
+        : "/favicon.png",
+    "@id": "",
+    url: typeof window !== "undefined" ? window.location.origin : "https://kansolelegeneralsupply.vercel.app",
+    telephone: "+255757261966",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Mkolani",
-      addressLocality: "Mwanza",
+      addressLocality: "Nyamagana, Mwanza",
       addressCountry: "TZ",
     },
-    telephone: "+255757261966",
-    url: typeof window !== "undefined" ? window.location.origin : undefined,
+    areaServed: "Mwanza, Tanzania",
+    description:
+      "Professional indoor and outdoor cleaning services including post-construction, deep cleaning, office makeovers, residential, commercial and industrial cleaning in Mwanza, Tanzania. We provide all equipment and chemicals.",
+    priceRange: "$$",
   };
 
   return (
     <>
       <Seo
-        title="Kansolele Cleaners Mwanza — Huduma Safi za Kitaalamu"
-        description="Book usafi wa nyumba, ofisi, madirisha, bustani na shule jijini Mwanza. Timu ya kitaalamu, bei nzuri, huduma ya haraka kupitia WhatsApp."
+        title="Kansolele Cleaners Mwanza — Professional Cleaning Services Tanzania"
+        description="Kansolele Professional Cleaners offers top-tier residential, commercial, and industrial cleaning services in Mwanza, Tanzania. Huduma za usafi wa uhakika kwa ofisi, nyumbani, na viwandani."
         path="/"
         jsonLd={jsonLd}
       />
@@ -162,7 +169,7 @@ const Index = () => {
                   <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
                     <img
                       src={svc.image}
-                      alt={svc.name}
+                      alt={`${svc.name} — ${svc.tagline} by Kansolele Professional Cleaners in Mwanza, Tanzania`}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -188,6 +195,7 @@ const Index = () => {
           </div>
         </motion.section>
 
+        <ServicesDetail />
         <Testimonials />
         <FaqSection />
         <MapSection />
