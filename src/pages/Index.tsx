@@ -10,12 +10,13 @@ import MapSection from "@/components/MapSection";
 import Testimonials from "@/components/Testimonials";
 import FaqSection from "@/components/FaqSection";
 import Seo from "@/components/Seo";
+import ServicesDetail from "@/components/ServicesDetail";
 import heroTeam from "@/assets/hero-team.jpg";
 import heroWindows from "@/assets/hero-windows.jpg";
 
 const heroSlides = [
-  { image: heroTeam, alt: "Kansolele cleaning team" },
-  { image: heroWindows, alt: "Professional window cleaning" },
+  { image: heroTeam, alt: "Kansolele Professional Cleaners team performing deep cleaning at a Mwanza office" },
+  { image: heroWindows, alt: "Kansolele cleaner washing high-rise office windows in Mwanza, Tanzania" },
 ];
 
 const Index = () => {
@@ -43,19 +44,25 @@ const Index = () => {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "CleaningService",
     name: "Kansolele Professional Cleaners",
-    description:
-      "Huduma ya usafi wa majumba, ofisi, madirisha, bustani na shule jijini Mwanza, Tanzania. Ofisi yetu ipo Mkolani, Mwanza.",
-    areaServed: "Mwanza, Tanzania",
+    image:
+      typeof window !== "undefined"
+        ? `${window.location.origin}/favicon.png`
+        : "/favicon.png",
+    "@id": "",
+    url: typeof window !== "undefined" ? window.location.origin : "https://kansolelegeneralsupply.vercel.app",
+    telephone: "+255757261966",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Mkolani",
-      addressLocality: "Mwanza",
+      addressLocality: "Nyamagana, Mwanza",
       addressCountry: "TZ",
     },
-    telephone: "+255757261966",
-    url: typeof window !== "undefined" ? window.location.origin : undefined,
+    areaServed: "Mwanza, Tanzania",
+    description:
+      "Professional indoor and outdoor cleaning services including post-construction, deep cleaning, office makeovers, residential, commercial and industrial cleaning in Mwanza, Tanzania. We provide all equipment and chemicals.",
+    priceRange: "$$",
   };
 
   return (
