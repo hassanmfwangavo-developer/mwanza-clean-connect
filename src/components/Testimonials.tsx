@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     quote:
       "Huduma ya haraka na bei nafuu. Niliwaita kufanya usafi wa nyumba nzima, hawakuniangusha.",
     name: "Sarah",
-    location: "Nyegezi",
+    location: "Mkolani",
   },
   {
     quote:

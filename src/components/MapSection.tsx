@@ -16,13 +16,13 @@ const MapSection = () => (
       <MapPin className="w-5 h-5 text-primary" />
       <div>
         <h2 className="text-2xl md:text-3xl font-bold leading-tight">Tupo Wapi</h2>
-        <p className="text-sm text-muted-foreground">Nyegezi Stand, Mwanza</p>
+        <p className="text-sm text-muted-foreground">Mkolani, Mwanza</p>
       </div>
     </div>
     <div className="rounded-3xl overflow-hidden shadow-elegant border border-border bg-card">
       <iframe
-        title="Kansolele location — Nyegezi Stand, Mwanza"
-        src={`https://www.google.com/maps?q=${NYEGEZI_QUERY}&z=15&output=embed`}
+        title="Kansolele location — Mkolani, Mwanza"
+        src={`https://www.google.com/maps?q=${LOCATION_QUERY}&z=15&output=embed`}
         width="100%"
         height="320"
         style={{ border: 0 }}
@@ -32,7 +32,7 @@ const MapSection = () => (
       />
     </div>
     <a
-      href={`https://www.google.com/maps/search/?api=1&query=${NYEGEZI_QUERY}`}
+      href={`https://www.google.com/maps/search/?api=1&query=${LOCATION_QUERY}`}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
