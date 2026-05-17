@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { fadeUp } from "@/lib/motion";
 
-const NYEGEZI_QUERY = "Nyegezi+Stand,+Mwanza,+Tanzania";
+const LOCATION_QUERY = "Mkolani,+Mwanza,+Tanzania";
 
 const MapSection = () => (
   <motion.section
