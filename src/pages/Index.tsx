@@ -46,8 +46,14 @@ const Index = () => {
     "@type": "LocalBusiness",
     name: "Kansolele Professional Cleaners",
     description:
-      "Huduma ya usafi wa majumba, ofisi, madirisha, bustani na shule jijini Mwanza, Tanzania.",
+      "Huduma ya usafi wa majumba, ofisi, madirisha, bustani na shule jijini Mwanza, Tanzania. Ofisi yetu ipo Mkolani, Mwanza.",
     areaServed: "Mwanza, Tanzania",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Mkolani",
+      addressLocality: "Mwanza",
+      addressCountry: "TZ",
+    },
     telephone: "+255757261966",
     url: typeof window !== "undefined" ? window.location.origin : undefined,
   };
