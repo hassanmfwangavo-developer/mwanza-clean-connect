@@ -68,8 +68,8 @@ const Index = () => {
   return (
     <>
       <Seo
-        title="Kansolele Cleaners Mwanza — Huduma Safi za Kitaalamu"
-        description="Book usafi wa nyumba, ofisi, madirisha, bustani na shule jijini Mwanza. Timu ya kitaalamu, bei nzuri, huduma ya haraka kupitia WhatsApp."
+        title="Kansolele Cleaners Mwanza — Professional Cleaning Services Tanzania"
+        description="Kansolele Professional Cleaners offers top-tier residential, commercial, and industrial cleaning services in Mwanza, Tanzania. Huduma za usafi wa uhakika kwa ofisi, nyumbani, na viwandani."
         path="/"
         jsonLd={jsonLd}
       />
@@ -169,7 +169,7 @@ const Index = () => {
                   <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
                     <img
                       src={svc.image}
-                      alt={svc.name}
+                      alt={`${svc.name} — ${svc.tagline} by Kansolele Professional Cleaners in Mwanza, Tanzania`}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
