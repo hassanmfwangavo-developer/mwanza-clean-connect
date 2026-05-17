@@ -195,6 +195,7 @@ const Index = () => {
           </div>
         </motion.section>
 
+        <ServicesDetail />
         <Testimonials />
         <FaqSection />
         <MapSection />
